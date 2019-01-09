@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.guimei.dao.CustomerMapper">
+    <!--查询当前页信息-->
+    <select id="customerList" resultType="cn.com.guimei.pojo.Customer">
+        select * from customer
+          limit #{currentPage},#{pageSize}
+    </select>
+    <!--查询带条件信息-->
+    <select id="customerWhereList" resultType="cn.com.guimei.pojo.Customer" parameterType="map">
+        select * from customer
+          <where>
+              <if test="customer.id>0 and customer.id!=null">
+                  id=#{customer.id}
+              </if>
+              <if test="customer.cusName!=null and customer.cusName!=''">
+                  and cusName like concat('%',#{customer.cusName},'%')
+              </if>
+              <if test="customer.cusSex!=null and customer.cusSex!=''">
+                  and cusSex=#{customer.cusSex}
+              </if>
+          </where>
+          limit #{pageIndex},#{pageSize}
+    </select>
+    <!--计算总条数-->
+    <select id="totalPage" resultType="int">
+        select count(*) from customer
+    </select>
+    <!--计算带条件的总条数信息-->
+    <select id="totalWherePage" resultType="int" parameterType="cn.com.guimei.pojo.Customer">
+        select count(1) from customer c
+        <where>
+            <if test="id!=0 and id!=null">
+                c.id=#{id}
+            </if>
+            <if test="cusName!=null and cusName!=''">
+                and cusName like concat('%',#{cusName},'%')
+            </if>
+            <if test="cusSex!=null and cusSex!=''">
+                and cusSex=#{cusSex}
+            </if>
+        </where>
+    </select>
+    <!--删除-->
+    <delete id="deleteById" parameterType="String">
+        delete from customer where id=#{cusId}
+    </delete>
+    <!--获取要修改的顾客信息-->
+    <select id="updateById" parameterType="String" resultType="cn.com.guimei.pojo.Customer">
+        select * from customer where id=#{id}
+    </select>
+    <!--修改-->
+    <update id="updateCustomer" parameterType="cn.com.guimei.pojo.Customer">
+        update customer c
+          <trim prefix="set" suffixOverrides="," suffix="where c.id=#{id}">
+              <if test="cusName!=null and cusName!=''">
+                  cusName=#{cusName},
+              </if>
+              <if test="cusLoginName!=null and cusLoginName !=''">
+                  cusLoginName=#{cusLoginName},</if>
+              <if test="cusPassword !=null and cusPassword !=''">
+                  cusPassword=#{cusPassword},
+              </if>
+          </trim>
+    </update>
+
+</mapper>

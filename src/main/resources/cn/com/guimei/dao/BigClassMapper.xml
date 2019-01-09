@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.guimei.dao.BigClassMapper" >
+    <select id="totalPageSize" resultType="Integer">
+        select count(*) from bigClass
+    </select>
+
+    <select id="getBigClassList" resultType="cn.com.guimei.pojo.Bigclass" parameterType="int">
+        select * from bigClass
+        limit #{currentPage},#{pageSize}
+    </select>
+
+    <delete id="deleteById" parameterType="String">
+        delete from bigClass
+          where id=#{id}
+    </delete>
+
+    <select id="updateById" resultType="cn.com.guimei.pojo.Bigclass" parameterType="String">
+        select * from bigClass
+          where id=#{id}
+    </select>
+
+    <update id="updateBigClass" parameterType="cn.com.guimei.pojo.Bigclass">
+        update bigClass
+      <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+          <if test="id!=null and id!=0">id=#{id}</if>
+          <if test="bigName!=null and bigName!=''">bigName=#{bigName}</if>
+          <if test="bigText!=null and bigText!=''">bigText=#{bigText}</if>
+      </trim>
+    </update>
+
+    <select id="ajaxQuery" resultType="cn.com.guimei.pojo.Bigclass">
+        select * from bigclass
+    </select>
+</mapper>

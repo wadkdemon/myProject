@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.guimei.dao.GoodsMapper">
+    <resultMap id="goods" type="cn.com.guimei.pojo.Goods">
+        <result column="id" property="id"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsSmalId" property="goodsSmalId"/>
+        <result column="goodsMoney" property="goodsMoney"/>
+        <result column="goodsNumber" property="goodsNumber"/>
+        <result column="goodsImage" property="goodsImage"/>
+        <result column="goodsCarriage" property="goodsCarriage"/>
+        <result column="goodsType" property="goodsType"/>
+        <result column="goodsDiscId" property="goodsDiscId"/>
+    </resultMap>
+    <resultMap id="goodsExt" type="cn.com.guimei.pojo.ext.GoodsExt" extends="goods">
+        <association property="smallClass" javaType="cn.com.guimei.pojo.Smallclass">
+            <id column="id" property="id"/>
+            <result column="smallBigId" property="smallBigId"/>
+            <result column="smallName" property="smallName"/>
+        </association>
+        <association property="discount" javaType="cn.com.guimei.pojo.Discount">
+            <id column="id" property="id"/>
+            <result column="discRate" property="discRate"/>
+        </association>
+    </resultMap>
+    <!--级联查询-->
+    <select id="getGoodsList" resultMap="goodsExt" parameterType="map">
+        select * from goods g,smallclass s where g.goodsSmalId=s.id
+          <if test="goods.id!=null and goods.id!=0">
+              and g.id=#{goods.id}
+          </if>
+          <if test="goods.goodsName!=null and goods.goodsName!=''">
+              and goodsName like concat('%',#{goods.goodsName},'%')
+          </if>
+          <if test="goods.goodsSmalId!=null and goods.goodsSmalId!=''">
+              and goodsSmalId=#{goods.goodsSmalId}
+          </if>
+          <!--<if test="goods.goodsDiscId!=null and goods.goodsDiscId!=0">
+              and g.goodsDiscId=#{goods.goodsDiscId}
+          </if>-->
+        limit #{pageIndex},#{pageSize}
+    </select>
+    <!--id查询-->
+    <select id="queryById" parameterType="String" resultType="cn.com.guimei.pojo.Goods">
+        select * from goods g,smallclass s where id=#{id}
+    </select>
+    <!--删除-->
+    <delete id="delById" parameterType="String">
+        delete from goods where id=#{id}
+    </delete>
+    <!--修改-->
+    <update id="updateById" parameterType="cn.com.guimei.pojo.Goods">
+        update goods
+      <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+          <if test="goodsName!=null and goodsName!=''">
+              goodsName=#{goodsName},
+          </if>
+          <if test="goodsSmalId!=null and goodsSmalId!=0">
+              goodsSmalId=#{goodsSmalId},
+          </if>
+          <if test="goodsMoney!=null and goodsMoney!=0">
+              goodsMoney=#{goodsMoney},
+          </if>
+          <if test="goodsNumber!=null and goodsNumber!=0">
+              goodsNumber=#{goodsNumber},
+          </if>
+          <if test="goodsImage!=null and goodsImage!=''">
+              goodsImage=#{goodsImage},
+          </if>
+          <if test="goodsCarriage!=null and goodsCarriage!=''">
+              goodsCarriage=#{goodsCarriage},
+          </if>
+          <if test="goodsType!=null and goodsType!=''">
+              goodsType=#{goodsType},
+          </if>
+          <if test="goodsDiscId!=null and goodsDiscId!=''">
+              goodsDiscId=#{goodsDiscId},
+          </if>
+      </trim>
+    </update>
+    <insert id="addGoods" parameterType="cn.com.guimei.pojo.Goods">
+        INSERT INTO goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsName != null and goodsName!=''"> goodsName, </if>
+            <if test="goodsSmalId != null and goodsSmalId!=0"> goodsSmalId, </if>
+            <if test="goodsMoney != null and goodsMoney!=0"> goodsMoney, </if>
+            <if test="goodsNumber != null and goodsNumber!=0"> goodsNumber}, </if>
+            <if test="goodsImage != null and goodsImage!=''"> goodsImage, </if>
+            <if test="goodsCarriage != null and goodsCarriage!=''"> goodsCarriage, </if>
+            <if test="goodsType != null and goodsType!=''"> goodsType, </if>
+            <if test="goodsDiscId != null and goodsDiscId!=''"> goodsDiscId, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsName != null and goodsName!=''"> #{goodsName}, </if>
+            <if test="goodsSmalId != null and goodsSmalId!=0"> #{goodsSmalId}, </if>
+            <if test="goodsMoney != null and goodsMoney!=0"> #{goodsMoney}, </if>
+            <if test="goodsNumber != null and goodsNumber!=0"> #{goodsNumber}, </if>
+            <if test="goodsImage != null and goodsImage!=''"> #{goodsImage}, </if>
+            <if test="goodsCarriage != null and goodsCarriage!=''"> #{goodsCarriage}, </if>
+            <if test="goodsType != null and goodsType!=''"> #{goodsType}, </if>
+            <if test="goodsDiscId != null and goodsDiscId!=''"> #{goodsDiscId}, </if>
+        </trim>
+    </insert>
+    <select id="getTotalSize" resultType="int" parameterType="cn.com.guimei.pojo.Goods">
+        select count(*) from goods
+      <where>
+          <if test="id!=null and id!=0">
+              id=#{id}
+          </if>
+          <if test="goodsName!=null and goodsName!=''">
+              and goodsName like concat('%',#{goodsName},'%')
+          </if>
+          <if test="goodsSmalId!=null and goodsSmalId!=''">
+              and goodsSmalId=#{goodsSmalId}
+          </if>
+      </where>
+    </select>
+
+</mapper>

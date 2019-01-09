@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.guimei.dao.AdminMapper">
+    <select id="login" parameterType="cn.com.guimei.pojo.Superuser" resultType="cn.com.guimei.pojo.Superuser">
+        select * from superuser
+            where userLoginName=#{userLoginName} and userPassword=#{userPassword}
+    </select>
+    <select id="showUserById"  resultType="cn.com.guimei.pojo.Superuser">
+        select * from superuser
+          where id=#{id}
+    </select>
+    <update id="updateById" parameterType="cn.com.guimei.pojo.Superuser">
+        update superuser set
+          userName=#{userName},
+          userPassword=#{userPassword}
+          where id=#{id}
+    </update>
+    <select id="showInfo" parameterType="String" resultType="cn.com.guimei.pojo.Superuser">
+        select * from superuser
+        where id=#{id}
+    </select>
+</mapper>
