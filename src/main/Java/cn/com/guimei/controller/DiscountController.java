@@ -19,12 +19,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/discount")
 public class DiscountController {
-/*    @Resource
+    @Resource
     private DiscountService discountService;
     @RequestMapping(value = "/ajaxQuery",produces = "text/json;charset=utf-8")
     @ResponseBody
     public String ajaxQuery(){
         List<Discount> discounts=discountService.queryDiscountAll();
         return JSONArray.toJSONString(discounts);
-    }*/
+    }
 }

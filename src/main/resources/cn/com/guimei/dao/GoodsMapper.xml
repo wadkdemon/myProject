@@ -16,7 +16,6 @@
     <resultMap id="goodsExt" type="cn.com.guimei.pojo.ext.GoodsExt" extends="goods">
         <association property="smallClass" javaType="cn.com.guimei.pojo.Smallclass">
             <id column="id" property="id"/>
-            <result column="smallBigId" property="smallBigId"/>
             <result column="smallName" property="smallName"/>
         </association>
         <association property="discount" javaType="cn.com.guimei.pojo.Discount">
@@ -26,7 +25,7 @@
     </resultMap>
     <!--级联查询-->
     <select id="getGoodsList" resultMap="goodsExt" parameterType="map">
-        select * from goods g,smallclass s where g.goodsSmalId=s.id
+        select * from goods g,smallclass s,discount d where g.goodsSmalId=s.id and g.goodsDiscId=d.id
           <if test="goods.id!=null and goods.id!=0">
               and g.id=#{goods.id}
           </if>
@@ -36,9 +35,9 @@
           <if test="goods.goodsSmalId!=null and goods.goodsSmalId!=''">
               and goodsSmalId=#{goods.goodsSmalId}
           </if>
-          <!--<if test="goods.goodsDiscId!=null and goods.goodsDiscId!=0">
+          <if test="goods.goodsDiscId!=null and goods.goodsDiscId!=0">
               and g.goodsDiscId=#{goods.goodsDiscId}
-          </if>-->
+          </if>
         limit #{pageIndex},#{pageSize}
     </select>
     <!--id查询-->
@@ -51,8 +50,8 @@
     </delete>
     <!--修改-->
     <update id="updateById" parameterType="cn.com.guimei.pojo.Goods">
-        update goods
-      <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+        update goods g
+      <trim prefix="set" suffixOverrides="," suffix="where g.id=#{id}">
           <if test="goodsName!=null and goodsName!=''">
               goodsName=#{goodsName},
           </if>
@@ -80,34 +79,13 @@
       </trim>
     </update>
     <insert id="addGoods" parameterType="cn.com.guimei.pojo.Goods">
-        INSERT INTO goods
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="goodsName != null and goodsName!=''"> goodsName, </if>
-            <if test="goodsSmalId != null and goodsSmalId!=0"> goodsSmalId, </if>
-            <if test="goodsMoney != null and goodsMoney!=0"> goodsMoney, </if>
-            <if test="goodsNumber != null and goodsNumber!=0"> goodsNumber}, </if>
-            <if test="goodsImage != null and goodsImage!=''"> goodsImage, </if>
-            <if test="goodsCarriage != null and goodsCarriage!=''"> goodsCarriage, </if>
-            <if test="goodsType != null and goodsType!=''"> goodsType, </if>
-            <if test="goodsDiscId != null and goodsDiscId!=''"> goodsDiscId, </if>
-        </trim>
-        VALUES
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="goodsName != null and goodsName!=''"> #{goodsName}, </if>
-            <if test="goodsSmalId != null and goodsSmalId!=0"> #{goodsSmalId}, </if>
-            <if test="goodsMoney != null and goodsMoney!=0"> #{goodsMoney}, </if>
-            <if test="goodsNumber != null and goodsNumber!=0"> #{goodsNumber}, </if>
-            <if test="goodsImage != null and goodsImage!=''"> #{goodsImage}, </if>
-            <if test="goodsCarriage != null and goodsCarriage!=''"> #{goodsCarriage}, </if>
-            <if test="goodsType != null and goodsType!=''"> #{goodsType}, </if>
-            <if test="goodsDiscId != null and goodsDiscId!=''"> #{goodsDiscId}, </if>
-        </trim>
+        insert into goods(goodsName, goodsSmalId, goodsMoney, goodsNumber, goodsImage, goodsCarriage, goodsType, goodsDiscId,goodsSellerId)
+        values(#{goodsName},#{goodsSmalId},#{goodsMoney},#{goodsNumber},#{goodsImage},#{goodsCarriage},#{goodsType},#{goodsDiscId},#{goodsSellerId});
     </insert>
     <select id="getTotalSize" resultType="int" parameterType="cn.com.guimei.pojo.Goods">
-        select count(*) from goods
-      <where>
+        select count(*) from goods g,smallclass s,discount d where g.goodsSmalId=s.id and g.goodsDiscId=d.id
           <if test="id!=null and id!=0">
-              id=#{id}
+              and g.id=#{id}
           </if>
           <if test="goodsName!=null and goodsName!=''">
               and goodsName like concat('%',#{goodsName},'%')
@@ -115,7 +93,6 @@
           <if test="goodsSmalId!=null and goodsSmalId!=''">
               and goodsSmalId=#{goodsSmalId}
           </if>
-      </where>
     </select>
 
 </mapper>

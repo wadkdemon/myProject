@@ -26,13 +26,13 @@
     <label>商品名:</label>
     <input type="text" name="goodsName" placeholder="请输入商品名"  />
     <label>所属分类:</label>
-    <select name="goodsSmallId">
+    <select name="goodsSmalId">
         <option value="">请选择</option>
     </select>
-    <%--<label>折扣</label>
+    <label>折扣</label>
     <select name="goodsDiscId">
         <option value="">请选择</option>
-    </select>--%>
+    </select>
     <input class="layui-btn " type="submit"  value="查询"/>
 </form>
     <c:choose>
@@ -58,7 +58,7 @@
                         <td>${goods.smallClass.smallName}</td>
                         <td>${goods.goodsMoney}</td>
                         <td>${goods.goodsNumber}</td>
-                        <td><img class="layui-nav-img" width="36px" src="static/back/Image/${goods.goodsImage}"></td>
+                        <td><img class="layui-nav-img" width="36px" src="static/images/goodsImage/${goods.goodsImage}"></td>
                         <td>${goods.goodsCarriage}</td>
                         <td><c:if test="${goods.goodsType==0}">新品</c:if>
                             <c:if test="${goods.goodsType==1}">二手</c:if></td>
@@ -77,7 +77,7 @@
             </table>
         </c:when>
         <c:otherwise>
-            <h3>暂无顾客信息</h3>
+            <h3>暂无商品信息</h3>
         </c:otherwise>
     </c:choose>
 </body>
@@ -89,30 +89,34 @@
         if (delStatus){
             open("/goods/delById?id="+id,"iframe_context");
         }
-    }
+    };
 
        // error
         if (${not empty error}){
             alert("${error}")
-        }
+        };
 
-       // 小分类下拉框
+       // 小分类查询下拉框
         $(function (){
             var smallNameUrl="/smallClass/ajaxQuery";
             $.getJSON(smallNameUrl,function (smallClass) {
                 $.each(smallClass,function (index, sc) {
-                    $("select[name='goodsSmallId']").append("<option value='"+sc.id+"'>"+sc.smallName+"</option>")
+                    $("select[name='goodsSmalId']").append("<option value='"+sc.id+"'>"+sc.smallName+"</option>")
                 })
             })
-        })
-    /*//打折下拉框
+        });
+    //打折查询下拉框
     $(function (){
         var discountUrl="/discount/ajaxQuery";
         $.getJSON(discountUrl,function (discountList) {
             $.each(discountList,function (index, dc) {
-                $("select[name='goodsSmallId']").append("<option value='"+dc.id+"'>"+sc.discRate+"</option>")
+                if(dc.discRate==1){
+                    $("select[name='goodsDiscId']").append("<option value='"+dc.id+"'>不打折</option>")
+                }else {
+                    $("select[name='goodsDiscId']").append("<option value='"+dc.id+"'>"+dc.discRate*10+'折'+"</option>")
+                }
             })
         })
-    })*/
+    })
 </script>
 </html>

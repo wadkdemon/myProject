@@ -48,7 +48,7 @@
         </table>
     </c:when>
     <c:otherwise>
-        <h3>暂无大分类信息</h3>
+        <h3>暂无小分类信息</h3>
     </c:otherwise>
 </c:choose>
 </body>

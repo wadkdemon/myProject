@@ -39,7 +39,13 @@
         <!--&lt;!&ndash;设置文件上传的编码格式&ndash;&gt;-->
         <!--<property name="defaultEncoding" value="utf-8"/>-->
     <!--</bean>-->
-
+    <!--设置文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置允许上传的文件最大字节数据-->
+        <!-- <property name="maxUploadSize" value="1024000"/>-->
+        <!--设置文件上传的编码方式-->
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
     <!--视图解析器（自动补全跳转页面资源的前缀和后缀）-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--设置前缀补全的资源-->
@@ -47,4 +53,5 @@
         <!--设置后缀补全的资源-->
         <property name="suffix" value=".jsp"/>
     </bean>
+
 </beans>

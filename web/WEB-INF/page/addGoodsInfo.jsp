@@ -28,8 +28,8 @@
         <label>商品名称</label>
        <input type="text" name="goodsName"  value="${goods.goodsName}" required/><br>
         <label>商品所属分类</label>
-        <select name="goodsSmallId">
-        </select> <br>
+        <select name="goodsSmalId">
+        </select><br>
         <label>商品价格</label>
        <input type="text" name="goodsMoney"  value="${goods.goodsMoney}" required/><br>
        <label>商品数量</label>
@@ -45,7 +45,7 @@
        <select name="goodsDiscId">
        </select><br>
         <label>商品图片</label>
-        <input type="file" name="goodsImage"  value="${goods.goodsImage}" />
+        <input type="file" name="goodsImages"/>
            <b id="imageMsg">文件大小必须不能超过5M</b><br>
         <input type="submit" value="增加">
    </form>
@@ -56,18 +56,10 @@
             var smallNameUrl="/smallClass/ajaxQuery";
             $.getJSON(smallNameUrl,function (smallClass) {
                 $.each(smallClass,function (index, sc) {
-                    $("select[name='goodsSmallId']").append("<option value='"+sc.id+"'>"+sc.smallName+"</option>")
+                    $("select[name='goodsSmalId']").append("<option value='"+sc.id+"'>"+sc.smallName+"</option>")
                 })
             });
-       /* //打折下拉框
-        $(function (){
-            var discountUrl="/discount/ajaxQuery";
-            $.getJSON(discountUrl,function (discountList) {
-                $.each(discountList,function (index, dc) {
-                    $("select[name='goodsSmallId']").append("<option value='"+dc.id+"'>"+sc.discRate+"</option>")
-                })
-            })
-        })*/
+
         //图片上传
         $("input[type='file']").change(function () {
             // 从前端获取文件名
@@ -82,6 +74,20 @@
                 $("#imageMsg").html("文件后缀错误！必须是gif|bmp|png|jpg|jpeg|icon").css("color","red");
                 $(this).val();
             }
+        });
+
+        //打折查询下拉框
+        $(function (){
+            var discountUrl="/discount/ajaxQuery";
+            $.getJSON(discountUrl,function (discountList) {
+                $.each(discountList,function (index, dc) {
+                    if(dc.discRate==1){
+                        $("select[name='goodsDiscId']").append("<option value='"+dc.id+"'>不打折</option>")
+                    }else {
+                        $("select[name='goodsDiscId']").append("<option value='"+dc.id+"'>"+dc.discRate*10+'折'+"</option>")
+                    }
+                })
+            })
         })
     })
 </script>

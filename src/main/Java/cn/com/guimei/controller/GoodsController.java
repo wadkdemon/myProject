@@ -87,7 +87,9 @@ public class GoodsController {
             request.setAttribute("error","文件类型非要求的图像格式！");
             return InternalResourceViewResolver.FORWARD_URL_PREFIX+"/WEB-INF/page/addGoods.jsp";
         }
-        return InternalResourceViewResolver.FORWARD_URL_PREFIX+"/goods/getGoodsList";
+        System.out.println("***********************************");
+        System.out.println(i);
+        return "showGoods";
     }
 
 }

@@ -22,8 +22,8 @@
     </select>
 
     <update id="updateBigClass" parameterType="cn.com.guimei.pojo.Bigclass">
-        update bigClass
-      <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+        update bigClass b
+      <trim prefix="set" suffixOverrides="," suffix="where b.id=#{id}">
           <if test="id!=null and id!=0">id=#{id}</if>
           <if test="bigName!=null and bigName!=''">bigName=#{bigName}</if>
           <if test="bigText!=null and bigText!=''">bigText=#{bigText}</if>

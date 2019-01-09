@@ -1106,178 +1106,184 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="217" name="goodsDiscId">
+    <column id="260" parent="217" name="goodsSellerId">
       <Position>9</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="217" name="goodsDiscId">
+      <Position>10</Position>
       <Comment>商品的折扣</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="261" parent="217" name="G_Sm_id">
+    <index id="262" parent="217" name="G_Sm_id">
       <ColNames>goodsSmalId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="262" parent="217" name="G_d_id">
+    <index id="263" parent="217" name="G_d_id">
       <ColNames>goodsDiscId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="263" parent="217" name="PRIMARY">
+    <key id="264" parent="217" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="264" parent="218" name="id">
+    <column id="265" parent="218" name="id">
       <Position>1</Position>
       <DataType>bigint(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="218" name="orderseGoodsId">
+    <column id="266" parent="218" name="orderseGoodsId">
       <Position>2</Position>
       <DataType>bigint(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="218" name="orderseCusId">
+    <column id="267" parent="218" name="orderseCusId">
       <Position>3</Position>
       <DataType>bigint(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="218" name="orderseDate">
+    <column id="268" parent="218" name="orderseDate">
       <Position>4</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="218" name="orderseAddress">
+    <column id="269" parent="218" name="orderseAddress">
       <Position>5</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="218" name="orderseMoney">
+    <column id="270" parent="218" name="orderseMoney">
       <Position>6</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="218" name="orderseStatus">
+    <column id="271" parent="218" name="orderseStatus">
       <Position>7</Position>
       <DataType>int(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="271" parent="218" name="PRIMARY">
+    <key id="272" parent="218" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="272" parent="219" name="id">
+    <column id="273" parent="219" name="id">
       <Position>1</Position>
       <DataType>bigint(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="219" name="sellerName">
+    <column id="274" parent="219" name="sellerName">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="219" name="sellerUser">
+    <column id="275" parent="219" name="sellerUser">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="219" name="sellerPassword">
+    <column id="276" parent="219" name="sellerPassword">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="219" name="sellerSex">
+    <column id="277" parent="219" name="sellerSex">
       <Position>5</Position>
       <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="219" name="sellerBirthday">
+    <column id="278" parent="219" name="sellerBirthday">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="219" name="sellerIdCard">
+    <column id="279" parent="219" name="sellerIdCard">
       <Position>7</Position>
       <DataType>varchar(18)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="219" name="sellerEmail">
+    <column id="280" parent="219" name="sellerEmail">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="219" name="sellerTel">
+    <column id="281" parent="219" name="sellerTel">
       <Position>9</Position>
       <DataType>varchar(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="219" name="sellerAddress">
+    <column id="282" parent="219" name="sellerAddress">
       <Position>10</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="282" parent="219" name="PRIMARY">
+    <key id="283" parent="219" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="283" parent="220" name="id">
+    <column id="284" parent="220" name="id">
       <Position>1</Position>
       <DataType>bigint(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="220" name="scCusId">
+    <column id="285" parent="220" name="scCusId">
       <Position>2</Position>
       <DataType>bigint(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="220" name="scGoodsId">
+    <column id="286" parent="220" name="scGoodsId">
       <Position>3</Position>
       <DataType>bigint(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="220" name="scNumber">
+    <column id="287" parent="220" name="scNumber">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="287" parent="220" name="S_c_id">
+    <index id="288" parent="220" name="S_c_id">
       <ColNames>scCusId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="288" parent="220" name="S_g_id">
+    <index id="289" parent="220" name="S_g_id">
       <ColNames>scGoodsId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="289" parent="220" name="PRIMARY">
+    <key id="290" parent="220" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="290" parent="221" name="id">
+    <column id="291" parent="221" name="id">
       <Position>1</Position>
       <Comment>小分类ID</Comment>
       <DataType>bigint(11)|0s</DataType>
@@ -1285,60 +1291,60 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="221" name="smallName">
+    <column id="292" parent="221" name="smallName">
       <Position>2</Position>
       <Comment>小分类名称</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="221" name="smallBigId">
+    <column id="293" parent="221" name="smallBigId">
       <Position>3</Position>
       <Comment>小分类对应的大分类ID</Comment>
       <DataType>bigint(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="221" name="smallText">
+    <column id="294" parent="221" name="smallText">
       <Position>4</Position>
       <Comment>小分类描述</Comment>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="294" parent="221" name="PRIMARY">
+    <key id="295" parent="221" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="295" parent="222" name="id">
+    <column id="296" parent="222" name="id">
       <Position>1</Position>
       <Comment>用户ID</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="222" name="userName">
+    <column id="297" parent="222" name="userName">
       <Position>2</Position>
       <Comment>用户真实姓名</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="222" name="userPassword">
+    <column id="298" parent="222" name="userPassword">
       <Position>3</Position>
       <Comment>用户密码</Comment>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="222" name="userImage">
+    <column id="299" parent="222" name="userImage">
       <Position>4</Position>
       <Comment>用户的头像(可设置默认)</Comment>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="222" name="userStatus">
+    <column id="300" parent="222" name="userStatus">
       <Position>5</Position>
       <Comment>用户状态 0 可用 1冻结</Comment>
       <DataType>int(1)|0s</DataType>
@@ -1346,20 +1352,20 @@
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="222" name="userID">
+    <column id="301" parent="222" name="userID">
       <Position>6</Position>
       <Comment>用户的身份证号</Comment>
       <DataType>varchar(18)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="222" name="userLoginName">
+    <column id="302" parent="222" name="userLoginName">
       <Position>7</Position>
       <Comment>用户的登录名</Comment>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="302" parent="222" name="PRIMARY">
+    <key id="303" parent="222" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
